@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      # APSA 1.4.0 release commit (tag v1.4.0), default inputs.
-      - uses: ictechgy/apsa@5bed4e5b02e4b60fd49573dbe51628c0e4d1455c
+      # APSA 1.5.0 release commit (tag v1.5.0), default inputs.
+      - uses: ictechgy/apsa@4a7fdff69c1f7085a9e199175eb99113959707cf
         id: apsa
       - name: Show the Action outputs
         env:
