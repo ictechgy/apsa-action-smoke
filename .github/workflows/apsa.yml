@@ -1,0 +1,23 @@
+name: APSA Action smoke test
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: read
+  security-events: write
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      # APSA 1.4.0 release commit (tag v1.4.0), default inputs.
+      - uses: ictechgy/apsa@5bed4e5b02e4b60fd49573dbe51628c0e4d1455c
+        id: apsa
+      - name: Show the Action outputs
+        env:
+          EXIT_CODE: ${{ steps.apsa.outputs.exit-code }}
+          REPORT_ID: ${{ steps.apsa.outputs.report-id }}
+          SARIF: ${{ steps.apsa.outputs.sarif-file }}
+        run: |
+          echo "exit-code=$EXIT_CODE report-id=$REPORT_ID sarif-file=$SARIF"
+          apsa --version
